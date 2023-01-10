@@ -7,15 +7,6 @@ const app = express();
 app.use(cors());
 
 const questions = {
-  testing: [
-    {
-      typeQuestion: "testing",
-      questionText: "Oi?",
-      answerText: "Oi!",
-    },
-    // questionText: "Tchau?",
-    // answerText: "Tchau!",
-  ],
   variables: [
     {
       typeQuestion: "Variables",

@@ -1,35 +1,32 @@
-alert("working");
+// alert("working");
 
 document.querySelector("button").addEventListener("click", searchAPI);
 
 async function searchAPI() {
   const subjectQuestion = document.querySelector("input").value;
   try {
-    const response = await fetch(
-      `https://js-questions-api.onrender.com/api/questions/${subjectQuestion}`
-    );
+    // const response = await fetch(
+    //   `https://js-questions-api.onrender.com/api/questions/${subjectQuestion}`
+    // );
     const allQuestions = await fetch(
       `https://js-questions-api.onrender.com/api/questions`
     );
-    const data = await response.json();
+    // const data = await response.json();
+    // console.log(data);
     const allQuestionsData = await allQuestions.json();
-    console.log(data);
+
     console.log(allQuestionsData[subjectQuestion]);
 
-    document.querySelector("#question").innerText = data.questionText;
-    document.querySelector("#answer").innerText = data.answerText;
-
-    const list = document.getElementById("list");
-
-    // list.innerHTML += `<li>Question: ${list.children.length + 1}</li>`;
-
-    list.innerHTML += `<li>Question: ${
-      list.children.length + data.questionText
-    }</li>`;
-
-    // console.log(allQuestionsData[subjectQuestion]);
-    allQuestionsData.map((question) => {
-      console.log(question);
+    const questions = document.getElementById("questions");
+    const answers = document.getElementById("answers");
+    const group = allQuestionsData[subjectQuestion].map((question) => {
+      console.log(question.questionText);
+      questions.innerHTML += `<li>Question ${questions.children.length + 1}:  ${
+        question.questionText
+      }</li>`;
+      answers.innerHTML += `<li>Answer ${answers.children.length + 1}:  ${
+        question.answerText
+      }</li>`;
     });
   } catch (error) {
     console.log(`Error: ${error}`);
