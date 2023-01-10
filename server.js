@@ -6,8 +6,8 @@ const app = express();
 
 app.use(cors());
 
-const questions = [
-  {
+const questions = {
+  variables: {
     typeQuestion: "Variables",
     questionText: `The scope of a "var" variable is...`,
     answerText: "functional",
@@ -17,7 +17,7 @@ const questions = [
       { answerText: "Block", isCorrect: false },
     ],
   },
-  {
+  variables: {
     typeQuestion: "Variables",
     questionText: `The scope of a "let" or "const" variable is...`,
     answerText: "block",
@@ -27,7 +27,7 @@ const questions = [
       { answerText: "Global", isCorrect: false },
     ],
   },
-  {
+  variables: {
     typeQuestion: "Variables",
     questionText: `Can "let" or "const" variables declared inside a curly brackets be
     accessed from outside the block?`,
@@ -39,7 +39,7 @@ const questions = [
       { answerText: "No", isCorrect: true },
     ],
   },
-  {
+  variables: {
     typeQuestion: "Variables",
     questionText: `What type of variable can be updated, but can't be re-declared into
     the scope?`,
@@ -50,7 +50,7 @@ const questions = [
       { answerText: "Var", isCorrect: false },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `What is OOP?`,
     answerText:
@@ -72,7 +72,7 @@ const questions = [
       },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `What is encapsulation in OOP?`,
     answerText:
@@ -95,7 +95,7 @@ const questions = [
       },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `What is inheritance in OOP?`,
     answerText:
@@ -118,7 +118,7 @@ const questions = [
       },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `What is abstraction in OOP?`,
     answerText:
@@ -141,7 +141,7 @@ const questions = [
       },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `What is polymorphism in OOP?`,
     answerText:
@@ -164,7 +164,7 @@ const questions = [
       },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `The benefits of __ are reduce complexity + increase reusability.`,
     answerText: "Encapsulation",
@@ -175,7 +175,7 @@ const questions = [
       { answerText: "Polymorphism", isCorrect: false },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `The benefits of __ are reduce complexity + isolate impact of changes.`,
     answerText: "Abstraction",
@@ -186,7 +186,7 @@ const questions = [
       { answerText: "Polymorphism", isCorrect: false },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `The benefits of __ are eliminate redundant code.`,
     answerText: "Inheritance",
@@ -197,7 +197,7 @@ const questions = [
       { answerText: "Polymorphism", isCorrect: false },
     ],
   },
-  {
+  oop: {
     typeQuestion: "OOP",
     questionText: `The benefits of __ are refactor ugly if/else and switch/case statements.`,
     answerText: "Polymorphism",
@@ -208,7 +208,7 @@ const questions = [
       { answerText: "Polymorphism", isCorrect: true },
     ],
   },
-  {
+  "Functional Programming": {
     typeQuestion: "Functional Programming",
     questionText: `What is Functional programming?`,
     answerText:
@@ -226,7 +226,7 @@ const questions = [
       },
     ],
   },
-  {
+  "functional programming": {
     typeQuestion: "Functional Programming",
     questionText: `What is a callback function?`,
     answerText:
@@ -249,7 +249,7 @@ const questions = [
       },
     ],
   },
-  {
+  "functional programming": {
     typeQuestion: "Functional Programming",
     questionText: `What are first class functions?`,
     answerText:
@@ -272,7 +272,7 @@ const questions = [
       },
     ],
   },
-  {
+  "functional programming": {
     typeQuestion: "Functional Programming",
     questionText: `What are higher order functions?`,
     answerText:
@@ -295,7 +295,7 @@ const questions = [
       },
     ],
   },
-  {
+  "functional programming": {
     typeQuestion: "Functional Programming",
     questionText: `Mark the correct sentence.`,
     answerText: "",
@@ -322,7 +322,7 @@ const questions = [
       },
     ],
   },
-  {
+  "functional programming": {
     typeQuestion: "Functional Programming",
     questionText: `_ adds items to the end of the same array it is called on, which mutates that array._ offers a way to merge new items to the end of an array without any mutating side.`,
     answerText: "push and concat",
@@ -345,7 +345,7 @@ const questions = [
       },
     ],
   },
-  {
+  "asynchronous programming": {
     typeQuestion: "Asynchronous programming",
     questionText: `Mark the correct sentence about Promises. `,
     answerText:
@@ -372,7 +372,7 @@ const questions = [
       },
     ],
   },
-];
+};
 
 app.use(express.static("public"));
 app.get("/", (request, response) => {
@@ -383,11 +383,11 @@ app.get("/api/questions", (request, response) => {
   response.json(questions);
 });
 
-app.get("/api/questions/:typeQuestion", (request, response) => {
-  const typeQuestion = request.params.typeQuestion.toLowerCase();
-  if (questions[typeQuestion]) {
+app.get("/api/questions/:subject", (request, response) => {
+  const subjectQuestion = request.params.subject.toLowerCase();
+  if (questions[subjectQuestion] || questions.subjectQuestion) {
     console.log("it exists");
-    response.json(questions);
+    response.json(questions[subjectQuestion]);
   } else {
     console.log("it does not exist");
     response.json(questions);
