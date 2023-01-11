@@ -362,6 +362,57 @@ const questions = {
         },
       ],
     },
+    {
+      typeQuestion: "Functional Programming",
+      questionText: `What is closure?`,
+      answerText:
+        "Closure means that an inner function have access to the variables within the outer function environment. In JS, closure are always created in the moment a function is created.",
+      answerOptions: [
+        {
+          answerText:
+            "Closure means that an outer function have access to the variables within the inner function environment.",
+          isCorrect: false,
+        },
+        {
+          answerText:
+            "Closure means that an inner function have access to the variables within the outer function environment. In JS, closure are always created in the moment a function is created.",
+          isCorrect: true,
+        },
+        {
+          answerText:
+            "Closure means that an inner function don't have access to the variables within the outer function environment, only the varibles declared inside of the inner function.",
+          isCorrect: false,
+        },
+      ],
+    },
+    {
+      typeQuestion: "Functional Programming",
+      questionText: `Mark que correct sentence about closure.`,
+      answerText:
+        "In JS, closures are used for event handlers and callback functions, give privacy to object data (data privacy), currying, partial applications and other functional programming patterns.",
+      answerOptions: [
+        {
+          answerText:
+            "Closures are functions that refer to free variables (variables that are locally declared or passed as parameter).",
+          isCorrect: false,
+        },
+        {
+          answerText:
+            "The inner function will have access to the free variables within the outer function only if it is declared before the inner function.",
+          isCorrect: false,
+        },
+        {
+          answerText:
+            "In JS, closures are used for event handlers and callback functions, give privacy to object data (data privacy), currying, partial applications and other functional programming patterns.",
+          isCorrect: true,
+        },
+        {
+          answerText:
+            "In JavaScript, closures are created every time a function is called.",
+          isCorrect: false,
+        },
+      ],
+    },
   ],
   "asynchronous programming": [
     {
